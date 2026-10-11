@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.webmanifest?v=2">
   <meta name="application-name" content="Дошикология">
   <meta name="apple-mobile-web-app-title" content="Дошикология">
-  <link rel="stylesheet" href="css/styles.css?v=20261010-oracle-art2">
+  <link rel="stylesheet" href="css/styles.css?v=20261011-wall-nav1">
 </head>
 <body>
   <div class="app-splash" id="appSplash" role="status" aria-live="polite" aria-label="Дошикология загружается">
@@ -29,7 +29,7 @@
         <button class="nav-btn active" data-route="home">Главная</button>
         <button class="nav-btn" data-route="recipes">Протоколы</button>
         <button class="nav-btn" data-route="oracle">Оракул</button>
-        <button class="nav-btn" data-route="wall">Поддержка</button>
+        <button class="nav-btn" data-route="wall">Стена</button>
       </nav>
     </header>
 
@@ -207,11 +207,11 @@
       </svg>
       <span class="tab-label" aria-hidden="true">Оракул</span>
     </button>
-    <button class="nav-btn" data-route="wall" aria-label="Поддержка" title="Поддержка" type="button">
+    <button class="nav-btn" data-route="wall" aria-label="Стена" title="Стена" type="button">
       <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
         <use href="images/ui/heart.svg#heart"></use>
       </svg>
-      <span class="tab-label" aria-hidden="true">Поддержка</span>
+      <span class="tab-label" aria-hidden="true">Стена</span>
     </button>
   </nav>
 
@@ -232,7 +232,6 @@
           <button class="btn primary" id="cookStartBtn">▶ Режим готовки</button>
           <button class="btn dosh-action-btn" id="modalFavoriteBtn" aria-pressed="false"><svg class="favorite-heart modal-favorite-heart" viewBox="0 0 24 24" aria-hidden="true"><use href="images/ui/heart.svg#heart"></use></svg> <span class="modal-favorite-label">Добавить в избранное</span></button>
           <button class="btn secondary share-protocol-btn" id="modalShareBtn" type="button" title="Рассекретить рецепт для товарища"><span aria-hidden="true">📨</span> Поделиться протоколом</button>
-          <button class="btn donate-spotlight-btn" id="modalDonateBtn" data-donate><span class="donate-heart" aria-hidden="true"><svg class="favorite-heart heart-filled" viewBox="0 0 24 24" aria-hidden="true"><use href="images/ui/heart.svg#heart"></use></svg></span> Поддержать лабораторию</button>
         </div>
         <div class="protocol-grid">
           <section class="protocol-card">
