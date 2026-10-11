@@ -620,3 +620,16 @@ button:focus-visible,
 .recipe-body .recipe-published{min-height:0;margin:0 0 12px;color:var(--muted);font-size:11px}
 @media(max-width:900px){.recent-strip{grid-auto-columns:minmax(174px,30vw)}}
 @media(max-width:620px){.recent-strip{grid-auto-columns:minmax(162px,60vw)}.recent-recipe-image{height:112px}}
+
+/* News section is independent of the recipe catalog and ready for data/news.json. */
+.home-news{margin-top:22px;padding:18px 20px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(125deg,rgba(255,178,41,.045),transparent 72%),var(--surface)}
+.home-news-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:11px}
+.home-news-heading h2{font-size:21px;line-height:1.2;margin:0}
+.home-news-subtitle{font-size:11px;color:var(--muted);white-space:nowrap}
+.home-news-list{display:grid;gap:9px}
+.home-news-empty{margin:0;font-size:12px;line-height:1.55;color:var(--muted)}
+.home-news-item{padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2)}
+.home-news-item h3{font-size:15px;line-height:1.3;margin:4px 0 5px}
+.home-news-item p{font-size:13px;line-height:1.5;color:var(--muted);margin:0}
+.home-news-item time{font-size:11px;color:var(--amber)}
+@media(max-width:620px){.home-news{padding:15px}.home-news-subtitle{font-size:10px}}

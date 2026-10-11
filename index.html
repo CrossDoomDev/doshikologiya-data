@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.webmanifest?v=2">
   <meta name="application-name" content="Дошикология">
   <meta name="apple-mobile-web-app-title" content="Дошикология">
-  <link rel="stylesheet" href="css/styles.css?v=20261011-home-feed1">
+  <link rel="stylesheet" href="css/styles.css?v=20261011-news-feed1">
 </head>
 <body>
   <div class="app-splash" id="appSplash" role="status" aria-live="polite" aria-label="Дошикология загружается">
@@ -76,6 +76,19 @@
           <button class="btn ghost" data-route="recipes">Все протоколы →</button>
         </div>
         <div class="recent-strip" id="homeRecipes" aria-label="Пять последних опубликованных рецептов"></div>
+
+        <section class="home-news" aria-labelledby="homeNewsTitle">
+          <div class="home-news-heading">
+            <div>
+              <div class="section-overline">Лента института</div>
+              <h2 id="homeNewsTitle">Новости лаборатории</h2>
+            </div>
+            <span class="home-news-subtitle">Объявления и события</span>
+          </div>
+          <div class="home-news-list" id="homeNewsList" aria-live="polite">
+            <p class="home-news-empty">Здесь скоро появятся новости института. Пока мы готовим первую сводку. 🍜</p>
+          </div>
+        </section>
 
         <div class="feature-grid">
           <article class="lab-card">
@@ -320,6 +333,6 @@
       </div>
     </div>
   </div>
-  <script type="module" src="js/main.js?v=20261011-home-feed1"></script>
+  <script type="module" src="js/main.js?v=20261011-news-feed1"></script>
 </body>
 </html>
