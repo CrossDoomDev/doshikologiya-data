@@ -607,3 +607,16 @@ button:focus-visible,
   .app-splash{transition:none!important}
 }
 
+
+/* A compact horizontal strip: five visible recipes on large screens, swipe on mobile. */
+.recent-strip{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px)/5);gap:12px;overflow-x:auto;overflow-y:hidden;padding:3px 1px 12px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line-hot) transparent}
+.recent-recipe{display:flex;flex-direction:column;text-align:left;overflow:hidden;border:1px solid var(--line);border-radius:17px;background:var(--surface);color:var(--text);min-width:0;cursor:pointer;scroll-snap-align:start;transition:transform .16s ease,border-color .16s ease}
+.recent-recipe:hover,.recent-recipe:focus-visible{border-color:var(--amber);transform:translateY(-2px)}
+.recent-recipe:active{transform:scale(.985)}
+.recent-recipe-image{width:100%;height:116px;object-fit:cover;display:block;background:var(--surface-2)}
+.recent-recipe-info{display:flex;flex-direction:column;gap:7px;padding:10px 11px 12px;min-height:76px}
+.recent-recipe-info strong{font-size:13px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.recent-recipe-info small{color:var(--muted);font-size:10px;line-height:1.35;margin-top:auto}
+.recipe-body .recipe-published{min-height:0;margin:0 0 12px;color:var(--muted);font-size:11px}
+@media(max-width:900px){.recent-strip{grid-auto-columns:minmax(174px,30vw)}}
+@media(max-width:620px){.recent-strip{grid-auto-columns:minmax(162px,60vw)}.recent-recipe-image{height:112px}}

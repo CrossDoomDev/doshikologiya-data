@@ -18,7 +18,7 @@
     "Острое",
     "Завтрак"
   ],
-  "homeRecipeLimit": 6,
+  "homeRecipeLimit": 5,
   "remoteRecipesUrl": "https://crossdoomdev.github.io/doshikologiya/data/recipes.json",
   "remoteRecipeIndexUrl": "https://crossdoomdev.github.io/doshikologiya/data/recipes-index.json"
 }

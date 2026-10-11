@@ -20,7 +20,7 @@ export const DEFAULT_CONFIG = Object.freeze({
   remoteRecipeIndexUrl: "",
   featuredRecipeId: "",
   categoryOrder: ["Все"],
-  homeRecipeLimit: 6
+  homeRecipeLimit: 5
 });
 
 export const ORACLE_REASONS = Object.freeze([
