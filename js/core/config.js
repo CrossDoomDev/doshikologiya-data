@@ -1,7 +1,8 @@
 export const DATA_URLS = Object.freeze({
   config: "data/config.json",
   recipes: "data/recipes.json",
-  patrons: "data/patrons.json"
+  patrons: "data/patrons.json",
+  news: "data/news.json"
 });
 
 export const STORAGE_KEYS = Object.freeze({

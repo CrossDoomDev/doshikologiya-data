@@ -35,6 +35,10 @@ export function latestRecipes(recipes, limit = 5) {
   return sortNewest(Array.isArray(recipes) ? recipes : [], "publishedAt", true).slice(0, limit);
 }
 
+export function latestNews(news, limit = 3) {
+  return sortNewest(Array.isArray(news) ? news : [], "publishedAt", true).slice(0, limit);
+}
+
 export function newestPatrons(patrons) {
   return sortNewest(Array.isArray(patrons) ? patrons : [], "date", false);
 }

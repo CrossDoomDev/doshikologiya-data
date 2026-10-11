@@ -13,6 +13,7 @@ export const state = {
   config: structuredClone(DEFAULT_CONFIG),
   recipes: [],
   patrons: [],
+  news: [],
   currentCategory: "Все",
   currentSearch: "",
   showFavoritesOnly: false,
@@ -21,10 +22,11 @@ export const state = {
   favorites: loadFavorites()
 };
 
-export function applyCatalog({ config, recipes, patrons }) {
+export function applyCatalog({ config, recipes, patrons, news = state.news }) {
   state.config = config;
   state.recipes = recipes;
   state.patrons = patrons;
+  state.news = Array.isArray(news) ? news : [];
 
   if (!getAllCategories().includes(state.currentCategory)) {
     state.currentCategory = "Все";
