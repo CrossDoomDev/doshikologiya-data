@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { publicationTime } from "../js/core/chronology.js";
 
 const root = process.cwd();
 const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
@@ -7,12 +8,14 @@ const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), "utf8
 const config = readJson("data/config.json");
 const recipes = readJson("data/recipes.json");
 const patrons = readJson("data/patrons.json");
+const news = readJson("data/news.json");
 
 const errors = [];
 const ids = new Set();
 
 if (!Array.isArray(recipes)) errors.push("data/recipes.json должен содержать массив.");
 if (!Array.isArray(patrons)) errors.push("data/patrons.json должен содержать массив.");
+if (!Array.isArray(news)) errors.push("data/news.json должен содержать массив.");
 
 for (const [index, recipe] of (Array.isArray(recipes) ? recipes : []).entries()) {
   const label = `Рецепт #${index + 1}`;
@@ -22,6 +25,7 @@ for (const [index, recipe] of (Array.isArray(recipes) ? recipes : []).entries())
   if (!Array.isArray(recipe.ingredients) || !recipe.ingredients.length) errors.push(`${label}: ingredients должен быть непустым массивом.`);
   if (!Array.isArray(recipe.steps) || !recipe.steps.length) errors.push(`${label}: steps должен быть непустым массивом.`);
   if (!Array.isArray(recipe.categories) || !recipe.categories.length) errors.push(`${label}: categories должен быть непустым массивом.`);
+  if (typeof recipe.publishedAt !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}.*(?:Z|[+-]\d{2}:\d{2})$/.test(recipe.publishedAt) || !Number.isFinite(publicationTime(recipe.publishedAt))) errors.push(`${label}: publishedAt должен содержать ISO дату и время с часовым поясом.`);
 
   if (recipe.id) {
     if (ids.has(recipe.id)) errors.push(`Повторяющийся id: ${recipe.id}`);
@@ -44,6 +48,22 @@ for (const [index, recipe] of (Array.isArray(recipes) ? recipes : []).entries())
   }
 }
 
+for (const [index, patron] of (Array.isArray(patrons) ? patrons : []).entries()) {
+  if (!patron || typeof patron.name !== "string" || typeof patron.text !== "string"
+    || !Number.isFinite(publicationTime(patron.date))) {
+    errors.push(`Комментарий #${index + 1}: имя, текст и правильная дата обязательны.`);
+  }
+}
+
+const newsIds = new Set();
+for (const [index, article] of (Array.isArray(news) ? news : []).entries()) {
+  if (!article || typeof article.id !== "string" || !/^[a-z0-9-]+$/.test(article.id)
+    || newsIds.has(article.id) || typeof article.title !== "string" || !article.title.trim()
+    || typeof article.text !== "string" || !article.text.trim()
+    || !Number.isFinite(publicationTime(article.publishedAt))) {
+    errors.push(`Новость #${index + 1}: недопустимые id, заголовок, текст или дата.`);
+  } else newsIds.add(article.id);
+}
 if (config.featuredRecipeId && !ids.has(config.featuredRecipeId)) {
   errors.push(`featuredRecipeId "${config.featuredRecipeId}" не найден среди рецептов.`);
 }
