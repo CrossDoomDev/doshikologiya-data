@@ -1,7 +1,7 @@
 import { checkOnlineRecipes, installOnlineRecipes } from "../core/api.js?v=20261011-link-audit1";
 import { applyCatalog, state } from "../core/state.js";
 import { renderFeatured } from "./home.js";
-import { renderChips, renderRecipes } from "./recipes.js?v=20261010-heart-asset1";
+import { renderChips, renderRecipes } from "./recipes.js?v=20261011-home-feed1";
 
 export function initRecipeUpdates(catalog) {
   const checkButton = document.getElementById("recipeUpdateCheckBtn");

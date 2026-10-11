@@ -1,7 +1,8 @@
 import { state } from "../core/state.js";
 import { escapeHtml } from "../core/utils.js";
 import { isFavorite, toggleFavoriteValue } from "../core/favorites.js";
-import { renderRecipes } from "./recipes.js?v=20261010-heart-asset1";
+import { renderRecipes } from "./recipes.js?v=20261011-home-feed1";
+import { formatPublicationDate } from "../core/chronology.js";
 
 export function openRecipe(id) {
   const recipe = state.recipes.find(item => item.id === id);
@@ -13,7 +14,7 @@ export function openRecipe(id) {
   document.getElementById("modalTitle").textContent = recipe.title;
   document.getElementById("modalDescription").textContent = recipe.description;
   document.getElementById("modalMeta").innerHTML =
-    `<span class="tag">⏱ ${escapeHtml(recipe.time)}</span><span class="tag">🔥 ${escapeHtml(recipe.difficulty)}</span><span class="tag">💸 ${escapeHtml(recipe.cost)}</span>`;
+    `<span class="tag">⏱ ${escapeHtml(recipe.time)}</span><span class="tag">🔥 ${escapeHtml(recipe.difficulty)}</span><span class="tag">💸 ${escapeHtml(recipe.cost)}</span><span class="tag">📅 ${escapeHtml(formatPublicationDate(recipe.publishedAt))}</span>`;
   document.getElementById("modalIngredients").innerHTML =
     recipe.ingredients.map(item => `<li>${escapeHtml(item)}</li>`).join("");
   document.getElementById("modalStory").textContent = recipe.story || "";

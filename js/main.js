@@ -1,12 +1,12 @@
 import { loadCatalog } from "./core/api.js?v=20261011-link-audit1";
-import { initRecipeUpdates } from "./features/recipe-updates.js?v=20261011-link-audit1";
+import { initRecipeUpdates } from "./features/recipe-updates.js?v=20261011-home-feed1";
 import { applyCatalog, state } from "./core/state.js";
 import { shareRecipe, incomingRecipeId } from "./features/sharing.js?v=20261010-offline-share1";
 import { goTo } from "./core/router.js";
 import { renderBanner, renderFeatured } from "./features/home.js";
-import { renderChips, renderRecipes, selectCategory, setSearch, toggleFavoritesOnly } from "./features/recipes.js?v=20261010-heart-asset1";
-import { renderPatrons } from "./features/support.js";
-import { openRecipe, closeRecipe, toggleFavorite } from "./features/recipe-modal.js?v=20261010-heart-asset1";
+import { renderChips, renderRecipes, selectCategory, setSearch, toggleFavoritesOnly } from "./features/recipes.js?v=20261011-home-feed1";
+import { renderPatrons } from "./features/support.js?v=20261011-home-feed1";
+import { openRecipe, closeRecipe, toggleFavorite } from "./features/recipe-modal.js?v=20261011-home-feed1";
 import { openDonation } from "./features/donations.js";
 import { initCookingLayout, openCookMode, closeCookMode, navigateCookStep, closeCookSuccess } from "./features/cooking.js?v=20261010-oracle-mage1";
 import { renderDailyIndex, runOracle } from "./features/oracle.js?v=20261010-oracle-art2";

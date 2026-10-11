@@ -2,6 +2,7 @@ import { state, getAllCategories } from "../core/state.js";
 import { escapeHtml, getCategories } from "../core/utils.js";
 import { isFavorite } from "../core/favorites.js";
 import { goTo } from "../core/router.js";
+import { latestRecipes, formatPublicationDate } from "../core/chronology.js";
 
 function recipeCard(recipe) {
   const category = getCategories(recipe)[0];
@@ -19,11 +20,21 @@ function recipeCard(recipe) {
       <h3>${escapeHtml(recipe.title)}</h3>
       <p>${escapeHtml(recipe.description)}</p>
       <div class="meta"><span class="tag">⏱ ${escapeHtml(recipe.time)}</span><span class="tag">🔥 ${escapeHtml(recipe.difficulty)}</span></div>
+      <p class="recipe-published">📅 ${escapeHtml(formatPublicationDate(recipe.publishedAt))}</p>
       <button class="btn dosh-action-btn card-open" data-open-recipe="${escapeHtml(recipe.id)}"><span class="btn-emoji" aria-hidden="true">📖</span> Открыть протокол</button>
     </div>
   </article>`;
 }
 
+function recentRecipeCard(recipe) {
+  return `<button class="recent-recipe" type="button" data-open-recipe="${escapeHtml(recipe.id)}" aria-label="Открыть рецепт: ${escapeHtml(recipe.title)}">
+    <img class="recent-recipe-image" src="${escapeHtml(recipe.image || "")}" alt="" loading="lazy">
+    <span class="recent-recipe-info">
+      <strong>${escapeHtml(recipe.title)}</strong>
+      <small>📅 ${escapeHtml(formatPublicationDate(recipe.publishedAt))}</small>
+    </span>
+  </button>`;
+}
 function filteredRecipes() {
   const query = state.currentSearch.trim().toLowerCase();
 
@@ -44,13 +55,13 @@ function filteredRecipes() {
 }
 
 export function renderRecipes() {
-  const homeLimit = state.config.homeRecipeLimit || 6;
-  const home = state.recipes.slice(0, homeLimit);
+  const homeLimit = Math.min(5, state.config.homeRecipeLimit || 5);
+  const home = latestRecipes(state.recipes, homeLimit);
   const homeBox = document.getElementById("homeRecipes");
   const recipesBox = document.getElementById("recipesGrid");
 
   homeBox.innerHTML = home.length
-    ? home.map(recipeCard).join("")
+    ? home.map(recentRecipeCard).join("")
     : '<div class="empty-state">Архив рецептов пока недоступен.</div>';
 
   const filtered = filteredRecipes();
